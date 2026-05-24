@@ -1,0 +1,23 @@
+apiVersion: kiket.dev/v1
+kind: Extension
+metadata:
+  key: kiket-ext-servicenow
+  name: ServiceNow Evidence Adapter
+  version: 1.0.0
+  description: Normalize ServiceNow task lifecycle and comment webhooks into Kiket case updates and evidence.
+spec:
+  sourceSystem: servicenow
+  ingestionScopes:
+    - raw-events:write
+    - evidence:write
+  sourceEventTypes:
+    - servicenow:record_created
+    - servicenow:record_updated
+    - servicenow:comment_created
+    - servicenow:work_note_created
+  evidenceTypes:
+    - servicenow_task
+    - servicenow_comment
+  retentionHints:
+    rawDays: 30
+    evidenceDays: 365
