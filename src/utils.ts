@@ -64,7 +64,9 @@ export function recordNumber(record: Record<string, unknown>): string | undefine
 }
 
 export function recordTable(payload: Record<string, unknown>, record: Record<string, unknown>): string | undefined {
-  return stringField(payload, 'table') ?? stringField(record, 'sys_class_name') ?? stringField(payload, 'sys_class_name');
+  return (
+    stringField(payload, 'table') ?? stringField(record, 'sys_class_name') ?? stringField(payload, 'sys_class_name')
+  );
 }
 
 export function recordStateDisplay(record: Record<string, unknown>): string | undefined {

@@ -35,11 +35,7 @@ function normalizeRecordLifecycle(ctx: ServiceNowRawEventContext): NormalizedOpe
   const number = recordNumber(record);
   if (!number) throw new Error('Missing required field: recordNumber');
 
-  const caseId = resolveCaseId(
-    payload.caseId,
-    recordDescription(record),
-    recordShortDescription(record),
-  );
+  const caseId = resolveCaseId(payload.caseId, recordDescription(record), recordShortDescription(record));
   if (!caseId) throw new Error('Missing required field: caseId');
 
   const table = recordTable(payload, record);
